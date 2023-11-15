@@ -12,7 +12,8 @@ import helmet from "helmet";
 import xss from "xss-clean";
 import notFound from "./middleware/notFound.js";
 import errorHandler from "./middleware/errorHandler.js"
-import indexRouter from "./routers/index.js"
+import indexApiRouter from "./api/routers/index.js"
+import indexSsrRouter from "./ssr/routers/index.js"
 
 dbConnect();
 
@@ -37,14 +38,21 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// SSR
+app.use(express.static(path.join(root_dir, "public")));
+app.set("view engine", "hbs");
+
+// API
 app.use(express.json({
-	type: ["application/json", "text/plain"],
+	type: ["application/json", "text/plain", "text/html"],
 }));
+
 app.use(helmet());
 app.use(xss());
 app.use(morgan("tiny"));
 
-app.use('/api/v1', indexRouter)
+app.use('/', indexSsrRouter)
+app.use('/api/v1', indexApiRouter)
 app.use(notFound);
 app.use(errorHandler);
 const port = process.env.PORT || 5000;

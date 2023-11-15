@@ -1,5 +1,5 @@
-import { generateAPIError } from "../../errors/apiError.js";
-import {errorWrapper}  from "../../middleware/errorWrapper.js";
+import { generateAPIError } from "../../../errors/apiError.js";
+import {errorWrapper}  from "../../../middleware/errorWrapper.js";
 
 
 const login = errorWrapper(async(req, res, next)=>{

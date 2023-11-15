@@ -1,4 +1,4 @@
-import Task from "../models/Task"
+import Task from "../models/Task.js"
 
 // tasks is an array of object {task, assignTo, projectId}
 const addTaskService = async (tasks) => {

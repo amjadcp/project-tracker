@@ -1,5 +1,5 @@
-import { generateAPIError } from "../../errors/apiError.js";
-import { errorWrapper } from "../../middleware/errorWrapper.js";
+import { generateAPIError } from "../../../errors/apiError.js";
+import { errorWrapper } from "../../../middleware/errorWrapper.js";
 import {
   addProjectService,
   getProjectsService,
@@ -7,7 +7,7 @@ import {
   editProjectService,
   assignTeamService,
   deleteProjectService,
-} from "../../service/project.js";
+} from "../../../service/project.js";
 
 const addProject = errorWrapper(async (req, res, next) => {
   const project = await addProjectService(req.body.projectName);

@@ -1,12 +1,12 @@
-import { generateAPIError } from "../../errors/apiError.js";
-import { errorWrapper } from "../../middleware/errorWrapper.js";
+import { generateAPIError } from "../../../errors/apiError.js";
+import { errorWrapper } from "../../../middleware/errorWrapper.js";
 import {
   addTaskService,
   getTasksService,
   getTaskService,
   editTaskService,
   deleteTaskService,
-} from "../../service/task.js";
+} from "../../../service/task.js";
 
 const addTasks = errorWrapper(async (req, res, next) => {
   const tasks = await addTaskService(req.body.tasks);
