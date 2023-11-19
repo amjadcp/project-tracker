@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Team</h1>
+    <ol>
+        {{#each users}}
+        <li>
+            <a href="/user/{{this._id}}">
+            {{this.name}} &nbsp;
+            {{this.email}} &nbsp;
+            {{this.department}} &nbsp;
+            {{this.role}}
+            </a>
+        </li>
+        {{/each}}
+    </ol>
+    <br><br>
+        <form action="/user" method="post">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="email" placeholder="Email">
+            <select name="department">
+                <option value="design">Design</option>
+                <option value="development">Development</option>
+                <option value="marketing">Marketing</option>
+                <option value="sales">Sales</option>
+            </select>
+             <select name="role">
+                <option value="designer">Designer</option>
+                <option value="back-end">Back-end</option>
+                <option value="front-end">Front-end</option>
+                <option value="ops">Operations</option>
+            </select>
+            <input type="submit" value="Add User">
+        </form>
+</body>
+</html>

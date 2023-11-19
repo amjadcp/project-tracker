@@ -8,7 +8,7 @@ const addProjectService = async (name) => {
 const getProjectsService = async (page, limit) => {
     page = parseInt(page)
     limit = parseInt(limit)
-    const projects = await Project.find().skip(page * limit).limit(limit)
+    const projects = await Project.find().skip((page - 1) * limit).limit(limit)
     return projects
 }
 
@@ -19,6 +19,7 @@ const getProjectService = async (id) => {
 
 // data is an object {name}
 const editProjectService = async (id, data) => {
+    console.log(id, data);
     const project = await Project.findOneAndUpdate({_id: id}, data, {new: true})
     return project
 }

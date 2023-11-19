@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.name}}</title>
+</head>
+
+<body>
+    <form action="/user/{{user._id}}" method="put">
+        <input type="text" name="name" placeholder="Name" value="{{user.name}}">
+        <input type="text" name="email" placeholder="Email" value="{{user.email}}">
+        <select name="department">
+            <option value="design">Design</option>
+            <option value="development">Development</option>
+            <option value="marketing">Marketing</option>
+            <option value="sales">Sales</option>
+        </select>
+        <select name="role">
+            <option value="designer">Designer</option>
+            <option value="back-end">Back-end</option>
+            <option value="front-end">Front-end</option>
+            <option value="ops">Operations</option>
+        </select>
+        <input type="submit" value="Edit User">
+    </form>
+</body>
+
+</html>

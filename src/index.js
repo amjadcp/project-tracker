@@ -36,10 +36,11 @@ const corsOptions = {
 	credentials: true,
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // SSR
 app.use(express.static(path.join(root_dir, "public")));
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "hbs");
 
 // API

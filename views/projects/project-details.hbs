@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{project.name}}</title>
+</head>
+
+<body>
+    <form action="/project/{{project._id}}" method="post">
+        <input type="text" name="name" placeholder="Name" value="{{project.name}}">
+        <input type="submit" value="Edit Project">
+    </form>
+    <br><br>
+    <h3>Team</h3>
+    <ol>
+        {{#each users}}
+        <li>
+            <a href="/user/{{this._id}}">
+            {{this.name}} &nbsp;
+            {{this.email}} &nbsp;
+            {{this.department}} &nbsp;
+            {{this.role}}
+            </a>
+        </li>
+        {{/each}}
+    </ol>
+</body>
+
+</html>

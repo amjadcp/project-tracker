@@ -10,55 +10,39 @@ import {
 } from "../../../service/project.js";
 
 const addProject = errorWrapper(async (req, res, next) => {
-  const project = await addProjectService(req.body.projectName);
+  const project = await addProjectService(req.body.name);
   if (project) {
-    return res.status(200).json({
-      success: true,
-      message: "project added",
-      data: project,
-    });
+    return res.redirect("/project")
   }
   return next(generateAPIError("project not added", 400));
 });
 
 const getProjects = errorWrapper(async (req, res, next) => {
-  const projects = await getProjectsService(req.query.page, req.query.limit);
+  const projects = await getProjectsService(req.query.page || 1, req.query.limit || 30);
   if (projects) {
-    return res.status(200).json({
-      success: true,
-      message: "project fetched",
-      data: projects,
-    });
+    return res.render("projects/projects.hbs", {projects: projects})
   }
   return next(generateAPIError("project not found", 404));
 });
 
 const getProject = errorWrapper(async (req, res, next) => {
-  const project = await getProjectService(req.query.id);
+  const project = await getProjectService(req.params.id);
   if (project) {
-    return res.status(200).json({
-      success: true,
-      message: "project fetched",
-      data: project,
-    });
+    return res.render("projects/project-details.hbs", {project: project})
   }
   return next(generateAPIError("project not found", 404));
 });
 
 const editProject = errorWrapper(async (req, res, next) => {
-    const project = await editProjectService(req.query.id, req.body);
+    const project = await editProjectService(req.params.id, req.body);
     if (project) {
-      return res.status(200).json({
-        success: true,
-        message: "project edited",
-        data: project,
-      });
+      return res.redirect(`/project/${req.params.id}`)
     }
     return next(generateAPIError("project not found", 404));
   });
 
   const deleteProject = errorWrapper(async (req, res, next) => {
-    const project = await deleteProjectService(req.query.id, req.body);
+    const project = await deleteProjectService(req.params.id, req.body);
     if (project) {
       return res.status(200).json({
         success: true,
